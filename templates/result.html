@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>ATS Dashboard</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body class="bg-light">
+
+<div class="container mt-5">
+
+    <div class="card shadow p-4">
+
+        <h1 class="text-center mb-4">
+            ATS Resume Analysis
+        </h1>
+
+        <!-- ATS Score -->
+
+        <h3 class="text-center">
+            ATS Score
+        </h3>
+
+        <div class="progress mb-4" style="height:30px;">
+
+            <div class="progress-bar bg-success"
+                 role="progressbar"
+                 style="width: {{ score }}%;">
+
+                {{ score }}%
+
+            </div>
+
+        </div>
+
+        <!-- Resume Strength -->
+
+        <div class="alert alert-info text-center">
+
+            <h4>
+                Resume Strength: {{ strength }}
+            </h4>
+
+        </div>
+
+        <!-- Resume Completeness -->
+
+        <div class="card border-info mb-3">
+
+            <div class="card-header bg-info text-white">
+                Resume Completeness
+            </div>
+
+            <div class="card-body">
+
+                <ul>
+
+                    {% for section, status in completeness.items() %}
+
+                        <li>
+
+                            {% if status %}
+                                ✅ {{ section }}
+                            {% else %}
+                                ❌ {{ section }}
+                            {% endif %}
+
+                        </li>
+
+                    {% endfor %}
+
+                </ul>
+
+            </div>
+
+        </div>
+
+        <!-- Matched & Missing Skills -->
+
+        <div class="row">
+
+            <div class="col-md-6">
+
+                <div class="card border-success mb-3">
+
+                    <div class="card-header bg-success text-white">
+                        Matched Skills
+                    </div>
+
+                    <div class="card-body">
+
+                        <ul>
+
+                            {% for item in matched %}
+                                <li>{{ item }}</li>
+                            {% endfor %}
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-6">
+
+                <div class="card border-danger mb-3">
+
+                    <div class="card-header bg-danger text-white">
+                        Missing Skills
+                    </div>
+
+                    <div class="card-body">
+
+                        <ul>
+
+                            {% for item in missing %}
+                                <li>{{ item }}</li>
+                            {% endfor %}
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Recommended Learning -->
+
+        <div class="card border-primary mb-3">
+
+            <div class="card-header bg-primary text-white">
+                Recommended Learning
+            </div>
+
+            <div class="card-body">
+
+                <ul>
+
+                    {% for item in recommendations %}
+                        <li>{{ item }}</li>
+                    {% endfor %}
+
+                </ul>
+
+            </div>
+
+        </div>
+
+        <!-- Resume Suggestions -->
+
+        <div class="card border-warning mb-3">
+
+            <div class="card-header bg-warning text-dark">
+                Resume Improvement Suggestions
+            </div>
+
+            <div class="card-body">
+
+                <ul>
+
+                    {% for item in suggestions %}
+                        <li>{{ item }}</li>
+                    {% endfor %}
+
+                </ul>
+
+            </div>
+
+        </div>
+
+        <!-- Pie Chart -->
+
+        <div class="text-center">
+
+            <h3>Skill Analysis Chart</h3>
+
+            <img src="{{ chart }}" width="350">
+
+        </div>
+
+        <hr>
+
+        <!-- Download Report -->
+
+        <div class="text-center">
+
+            <a href="/static/ATS_Report.pdf" download>
+
+                <button class="btn btn-primary">
+                    Download ATS Report
+                </button>
+
+            </a>
+
+        </div>
+
+        <br>
+
+        <!-- Analyze Again -->
+
+        <div class="text-center">
+
+            <a href="/" class="btn btn-secondary">
+                Analyze Another Resume
+            </a>
+
+        </div>
+
+        <br>
+
+        <!-- History -->
+
+        <div class="text-center">
+
+            <a href="/history" class="btn btn-dark">
+                View History
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
